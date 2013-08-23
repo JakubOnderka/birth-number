@@ -16,6 +16,9 @@ class BirthNumber
     const GENDER_MALE = 'male',
         GENDER_FEMALE = 'female';
 
+    const TYPE_CZECH = 'czech',
+        TYPE_SLOVAK = 'slovak';
+
     /** @var int */
     private $year;
 
@@ -31,11 +34,20 @@ class BirthNumber
     /** @var int */
     private $checksum;
 
+    /** @var string */
+    private $type = self::TYPE_CZECH;
+
     /**
      * @param string $birthNumber
      */
-    public function __construct($birthNumber)
+    public function __construct($birthNumber, $type = self::TYPE_CZECH)
     {
+        if ($type !== self::TYPE_CZECH && $type !== self::TYPE_SLOVAK) {
+            throw new \InvalidArgumentException("Type must be TYPE_CZECH or TYPE_SLOVAK constant, '$type' given.");
+        }
+
+        $this->type = $type;
+
         if (!preg_match('#^\s*(\d\d)(\d\d)(\d\d)[ /]*(\d\d\d)(\d?)\s*$#', $birthNumber, $matches)) {
             throw new \InvalidArgumentException("Invalid birth number format '$birthNumber'.");
         }
@@ -98,12 +110,19 @@ class BirthNumber
     public function getMonth()
     {
         $month = $this->month;
-        if ($this->month > 70 && $this->getYear() > 2003)  {
-            $month -= 70;
-        } elseif ($this->month > 50) {
-            $month -= 50;
-        } elseif ($this->month > 20 && $this->getYear() > 2003) {
-            $month -= 20;
+
+        if ($this->type === self::TYPE_SLOVAK) {
+            if ($this->month > 50) {
+                $month -= 50;
+            }
+        } else {
+            if ($this->month > 70 && $this->getYear() > 2003)  {
+                $month -= 70;
+            } elseif ($this->month > 50) {
+                $month -= 50;
+            } elseif ($this->month > 20 && $this->getYear() > 2003) {
+                $month -= 20;
+            }
         }
 
         return $month;
@@ -150,11 +169,11 @@ class BirthNumber
      */
     public function getGender()
     {
-        if ($this->month > 70 && $this->getYear() > 2003 || $this->month > 50)  {
-            return self::GENDER_FEMALE;
-        }
+        $isFemale =
+            ($this->type === self::TYPE_CZECH && $this->month > 70 && $this->getYear() > 2003) ||
+            $this->month > 50;
 
-        return self::GENDER_MALE;
+        return $isFemale ? self::GENDER_FEMALE : self::GENDER_MALE;
     }
 
     /**

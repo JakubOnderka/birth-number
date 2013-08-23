@@ -41,6 +41,17 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         new BirthNumber('121212/121');
     }
 
+    public function testFormatValidTypeValid()
+    {
+        new BirthNumber('1212121212', BirthNumber::TYPE_SLOVAK);
+    }
+
+    public function testFormatValidInvalidType()
+    {
+        $this->setExpectedException('\InvalidArgumentException');
+        new BirthNumber('121212/121', 'german');
+    }
+
     public function testValidFemaleNumber()
     {
         $birthNumber = new BirthNumber('736028/5163');
@@ -115,6 +126,24 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($birthNumber->isValid());
 
         $this->assertEquals(BirthNumber::GENDER_FEMALE, $birthNumber->getGender());
+    }
+
+    public function testInvalidSlovakMaleNumberAfter2003()
+    {
+        $birthNumber = new BirthNumber('043028/5163', BirthNumber::TYPE_SLOVAK);
+
+        $this->assertFalse($birthNumber->isValidDate());
+        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertFalse($birthNumber->isValid());
+    }
+
+    public function testInvalidSlovakFemaleNumberAfter2003()
+    {
+        $birthNumber = new BirthNumber('048028/5168', BirthNumber::TYPE_SLOVAK);
+
+        $this->assertFalse($birthNumber->isValidDate());
+        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertFalse($birthNumber->isValid());
     }
 
     public function testShortNumberBefore1954()
