@@ -112,6 +112,20 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(BirthNumber::GENDER_FEMALE, $birthNumber->getGender());
     }
 
+    public function testShortNumberBefore1954()
+    {
+        $birthNumber = new BirthNumber('521028/516');
+
+        $this->assertEquals(1952, $birthNumber->getYear());
+        $this->assertEquals(10, $birthNumber->getMonth());
+        $this->assertEquals(28, $birthNumber->getDay());
+        $this->assertEquals(516, $birthNumber->getExtension());
+
+        $this->assertTrue($birthNumber->isValidDate());
+        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertTrue($birthNumber->isValid());
+    }
+
     public function testInvalidDate()
     {
         $birthNumber = new BirthNumber('731328/5166');

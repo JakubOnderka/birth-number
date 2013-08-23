@@ -60,7 +60,7 @@ class BirthNumber
      */
     public function isValidChecksum()
     {
-        if ($this->checksum === '') {
+        if (!$this->hasChecksum()) {
             return $this->year < 54;
         }
 
@@ -88,7 +88,8 @@ class BirthNumber
      */
     public function getYear()
     {
-        return $this->year + ($this->year < 54 ? 2000 : 1900);
+        $after2000 = $this->year < 54 && $this->hasChecksum();
+        return $this->year + ($after2000 ? 2000 : 1900);
     }
 
     /**
@@ -172,5 +173,13 @@ class BirthNumber
     public function __toString()
     {
         return $this->toString();
+    }
+
+    /**
+     * @return bool
+     */
+    private function hasChecksum()
+    {
+        return $this->checksum !== '';
     }
 }
