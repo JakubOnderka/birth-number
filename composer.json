@@ -1,0 +1,19 @@
+{
+    "name": "jakubonderka/birth-number",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jakub Onderka",
+            "email": "jakub.onderka@gmail.com",
+            "homepage": "http://acci.cz/"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": { "Assetic": "src/" },
+    }
+}
