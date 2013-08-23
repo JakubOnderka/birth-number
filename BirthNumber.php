@@ -97,11 +97,11 @@ class BirthNumber
     public function getMonth()
     {
         $month = $this->month;
-        if ($this->month > 70 && $this->year > 2003)  {
+        if ($this->month > 70 && $this->getYear() > 2003)  {
             $month -= 70;
         } elseif ($this->month > 50) {
             $month -= 50;
-        } elseif ($this->month > 20 && $this->year > 2003) {
+        } elseif ($this->month > 20 && $this->getYear() > 2003) {
             $month -= 20;
         }
 
@@ -149,7 +149,7 @@ class BirthNumber
      */
     public function getGender()
     {
-        if ($this->month > 70 && $this->year > 2003 || $this->month > 50)  {
+        if ($this->month > 70 && $this->getYear() > 2003 || $this->month > 50)  {
             return self::GENDER_FEMALE;
         }
 
