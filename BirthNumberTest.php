@@ -26,6 +26,11 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         new BirthNumber('121212/1212');
     }
 
+    public function testFormatValidWithSpace()
+    {
+        new BirthNumber('121212 1212');
+    }
+
     public function testFormatValidOld()
     {
         new BirthNumber('121212121');
@@ -124,6 +129,20 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($birthNumber->isValidDate());
         $this->assertTrue($birthNumber->isValidChecksum());
         $this->assertTrue($birthNumber->isValid());
+    }
+
+    public function testShortNumberAfter1954()
+    {
+        $birthNumber = new BirthNumber('561028/516');
+
+        $this->assertEquals(1956, $birthNumber->getYear());
+        $this->assertEquals(10, $birthNumber->getMonth());
+        $this->assertEquals(28, $birthNumber->getDay());
+        $this->assertEquals(516, $birthNumber->getExtension());
+
+        $this->assertTrue($birthNumber->isValidDate());
+        $this->assertFalse($birthNumber->isValidChecksum());
+        $this->assertFalse($birthNumber->isValid());
     }
 
     public function testInvalidDate()
