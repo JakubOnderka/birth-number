@@ -64,13 +64,13 @@ class BirthNumber
      */
     public function isValid()
     {
-        return $this->isValidChecksum() && $this->isValidDate();
+        return $this->hasValidChecksum() && $this->hasValidDate();
     }
 
     /**
      * @return bool
      */
-    public function isValidChecksum()
+    public function hasValidChecksum()
     {
         if (!$this->hasChecksum()) {
             return $this->year < 54;
@@ -90,7 +90,7 @@ class BirthNumber
     /**
      * @return bool
      */
-    public function isValidDate()
+    public function hasValidDate()
     {
         return checkdate($this->getMonth(), $this->getDay(), $this->getYear());
     }

@@ -13,8 +13,8 @@ var_dump($birthNumber->getDay()); // 28
 var_dump($birthNumber->getExtension()); // 516
 var_dump($birthNumber->getChecksum()); // 3
 
-var_dump($birthNumber->isValidDate()); // true
-var_dump($birthNumber->isValidChecksum()); // true
+var_dump($birthNumber->hasValidDate()); // true
+var_dump($birthNumber->hasValidChecksum()); // true
 var_dump($birthNumber->isValid()); // true
 
 var_dump($birthNumber->getGender()); // female

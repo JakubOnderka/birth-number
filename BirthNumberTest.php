@@ -62,8 +62,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(516, $birthNumber->getExtension());
         $this->assertEquals(3, $birthNumber->getChecksum());
 
-        $this->assertTrue($birthNumber->isValidDate());
-        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertTrue($birthNumber->hasValidDate());
+        $this->assertTrue($birthNumber->hasValidChecksum());
         $this->assertTrue($birthNumber->isValid());
 
         $this->assertEquals(BirthNumber::GENDER_FEMALE, $birthNumber->getGender());
@@ -83,8 +83,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(516, $birthNumber->getExtension());
         $this->assertEquals(9, $birthNumber->getChecksum());
 
-        $this->assertTrue($birthNumber->isValidDate());
-        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertTrue($birthNumber->hasValidDate());
+        $this->assertTrue($birthNumber->hasValidChecksum());
         $this->assertTrue($birthNumber->isValid());
 
         $this->assertEquals(BirthNumber::GENDER_MALE, $birthNumber->getGender());
@@ -104,8 +104,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(516, $birthNumber->getExtension());
         $this->assertEquals(3, $birthNumber->getChecksum());
 
-        $this->assertTrue($birthNumber->isValidDate());
-        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertTrue($birthNumber->hasValidDate());
+        $this->assertTrue($birthNumber->hasValidChecksum());
         $this->assertTrue($birthNumber->isValid());
 
         $this->assertEquals(BirthNumber::GENDER_MALE, $birthNumber->getGender());
@@ -121,8 +121,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(516, $birthNumber->getExtension());
         $this->assertEquals(8, $birthNumber->getChecksum());
 
-        $this->assertTrue($birthNumber->isValidDate());
-        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertTrue($birthNumber->hasValidDate());
+        $this->assertTrue($birthNumber->hasValidChecksum());
         $this->assertTrue($birthNumber->isValid());
 
         $this->assertEquals(BirthNumber::GENDER_FEMALE, $birthNumber->getGender());
@@ -132,8 +132,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
     {
         $birthNumber = new BirthNumber('043028/5163', BirthNumber::TYPE_SLOVAK);
 
-        $this->assertFalse($birthNumber->isValidDate());
-        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertFalse($birthNumber->hasValidDate());
+        $this->assertTrue($birthNumber->hasValidChecksum());
         $this->assertFalse($birthNumber->isValid());
     }
 
@@ -141,8 +141,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
     {
         $birthNumber = new BirthNumber('048028/5168', BirthNumber::TYPE_SLOVAK);
 
-        $this->assertFalse($birthNumber->isValidDate());
-        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertFalse($birthNumber->hasValidDate());
+        $this->assertTrue($birthNumber->hasValidChecksum());
         $this->assertFalse($birthNumber->isValid());
     }
 
@@ -155,8 +155,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(28, $birthNumber->getDay());
         $this->assertEquals(516, $birthNumber->getExtension());
 
-        $this->assertTrue($birthNumber->isValidDate());
-        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertTrue($birthNumber->hasValidDate());
+        $this->assertTrue($birthNumber->hasValidChecksum());
         $this->assertTrue($birthNumber->isValid());
     }
 
@@ -169,8 +169,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(28, $birthNumber->getDay());
         $this->assertEquals(516, $birthNumber->getExtension());
 
-        $this->assertTrue($birthNumber->isValidDate());
-        $this->assertFalse($birthNumber->isValidChecksum());
+        $this->assertTrue($birthNumber->hasValidDate());
+        $this->assertFalse($birthNumber->hasValidChecksum());
         $this->assertFalse($birthNumber->isValid());
     }
 
@@ -178,8 +178,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
     {
         $birthNumber = new BirthNumber('731328/5166');
 
-        $this->assertFalse($birthNumber->isValidDate());
-        $this->assertTrue($birthNumber->isValidChecksum());
+        $this->assertFalse($birthNumber->hasValidDate());
+        $this->assertTrue($birthNumber->hasValidChecksum());
         $this->assertFalse($birthNumber->isValid());
     }
 
@@ -187,8 +187,8 @@ class BirthNumberTest extends \PHPUnit_Framework_TestCase
     {
         $birthNumber = new BirthNumber('731028/5163');
 
-        $this->assertTrue($birthNumber->isValidDate());
-        $this->assertFalse($birthNumber->isValidChecksum());
+        $this->assertTrue($birthNumber->hasValidDate());
+        $this->assertFalse($birthNumber->hasValidChecksum());
         $this->assertFalse($birthNumber->isValid());
     }
 }
