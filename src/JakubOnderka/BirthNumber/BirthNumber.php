@@ -49,7 +49,7 @@ class BirthNumber
         $this->type = $type;
 
         if (!preg_match('#^\s*(\d\d)(\d\d)(\d\d)[ /]*(\d\d\d)(\d?)\s*$#', $birthNumber, $matches)) {
-            throw new \InvalidArgumentException("Invalid birth number format '$birthNumber'.");
+            throw new InvalidFormatException($birthNumber);
         }
 
         $this->year = $matches[1];
