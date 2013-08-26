@@ -1,7 +1,6 @@
 <?php
 use JakubOnderka\BirthNumber\BirthNumber;
 
-require_once __DIR__ . '/BirthNumber.php';
 
 class BirthNumberTest extends \PHPUnit_Framework_TestCase
 {
