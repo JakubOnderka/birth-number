@@ -21,3 +21,5 @@ var_dump($birthNumber->getGender()); // female
 
 var_dump($birthNumber->toString()); // 736028/5163
 ```
+-----
+[![Build Status](https://travis-ci.org/JakubOnderka/birth-number.png?branch=master)](https://travis-ci.org/JakubOnderka/birth-number)
