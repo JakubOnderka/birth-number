@@ -1,12 +1,11 @@
 <?php
 use JakubOnderka\BirthNumber\BirthNumber;
 
-
 class BirthNumberTest extends \PHPUnit_Framework_TestCase
 {
     public function testFormatInvalid()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->setExpectedException('\JakubOnderka\BirthNumber\InvalidFormatException');
         new BirthNumber('Jakub');
     }
 
