@@ -2,6 +2,17 @@ Birth number library for PHP
 ============
 Library for validating and formatting Czech and Slovak birth numbers.
 
+Instalation
+-------------
+Via composer:
+```json
+{
+    "require": {
+        "jakub-onderka/birth-number": "1.0.0"
+    }
+}
+```
+
 Usage
 -------------
 ```php
